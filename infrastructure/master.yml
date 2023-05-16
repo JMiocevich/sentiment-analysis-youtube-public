@@ -1,0 +1,11 @@
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  test
+
+Resources:
+
+  youtubeSentimentStack:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: "./youtubeSentimentStack.yml"
+

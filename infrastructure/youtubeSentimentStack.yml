@@ -1,0 +1,31 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  test
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 60
+    Runtime: python3.9
+    Layers: 
+      - !Ref BasePythonLayer
+    Tracing: Active
+
+Resources:
+  BasePythonLayer: 
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      ContentUri: ../src/layer_base
+      CompatibleRuntimes: 
+        - python3.9
+
+  getTranscript:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ../src/
+      Handler: getTranscript.lambda_function.lambda_handler
+      Policies:
+        - ComprehendBasicAccessPolicy: {}
+
+  

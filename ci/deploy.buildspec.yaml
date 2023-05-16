@@ -1,0 +1,12 @@
+version: 0.2
+env:
+  shell: bash
+phases:
+  build:
+    commands:
+      - . ./ci/scripts/assume-role.sh
+      - ./ci/scripts/deploy.sh
+      - ./ci/scripts/verify.sh
+artifacts:
+  files:
+    - "**/*"
